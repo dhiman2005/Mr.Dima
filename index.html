@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mr. Dima's Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Global Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        /* Full Black Background for Intro */
+        body {
+            background-color: #f0f0f0;
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #intro {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: black;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 10;
+            opacity: 1;
+            animation: fadeInOut 2s forwards;
+        }
+
+        #intro img {
+            border-radius: 50%;
+            width: 150px;
+            height: 150px;
+            border: 4px solid #fff;
+            box-shadow: 0px 4px 20px rgba(255, 255, 255, 0.6);
+        }
+
+        #intro h1 {
+            font-size: 36px;
+            color: #FFD700;
+            margin-left: 20px;
+            text-shadow: 0px 4px 8px rgba(255, 215, 0, 0.6);
+        }
+
+        @keyframes fadeInOut {
+            0% { opacity: 1; }
+            50% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+
+        /* Header with Blurred Background Image */
+        header {
+            display: flex;
+            align-items: center;
+            padding: 30px;
+            margin: 20px;
+            background-image: url('rec.jpg');
+            background-size: cover;
+            background-position: center;
+            backdrop-filter: blur(8px);
+            border-radius: 15px;
+            box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.4);
+            opacity: 0;
+            animation: fadeIn 2s forwards 2s;
+            color: #fff;
+        }
+
+        .profile-photo {
+            border-radius: 50%;
+            width: 150px;
+            height: 150px;
+            border: 4px solid #fff;
+            box-shadow: 0px 4px 20px rgba(255, 255, 255, 0.6);
+            margin-right: 20px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        header h2 {
+            font-size: 36px;
+            font-weight: bold;
+            color: #FFD700;
+            text-shadow: 0px 4px 8px rgba(255, 215, 0, 0.6);
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 5px 10px;
+            border-radius: 8px;
+        }
+
+        header p {
+            font-size: 18px;
+            color: #FFD700;
+            text-shadow: 0px 3px 6px rgba(255, 215, 0, 0.5);
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 3px 8px;
+            border-radius: 8px;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Portfolio Gallery */
+        .portfolio-gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* 3 images per row */
+            gap: 15px;
+            margin: 20px;
+        }
+
+        .portfolio-image {
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .portfolio-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .portfolio-image:hover {
+            transform: scale(1.05);
+            box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.5);
+        }
+
+        .portfolio-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            border-radius: 15px;
+        }
+
+        .portfolio-image:hover::after {
+            opacity: 1;
+        }
+
+        /* Rating Stars */
+        .rating {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            font-size: 14px;
+            color: #FFD700;
+        }
+
+        .rating span {
+            cursor: pointer;
+        }
+
+        #contact {
+            margin: 40px 20px;
+            padding: 40px;
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 15px;
+            box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            transition: transform 0.3s ease;
+            opacity: 0;
+            animation: fadeIn 2s forwards 2s;
+        }
+
+        #contact:hover {
+            transform: translateY(-10px);
+        }
+
+        #contact h2 {
+            font-size: 28px;
+            color: #FFD700;
+            margin-bottom: 15px;
+            text-shadow: 0px 4px 8px rgba(255, 215, 0, 0.6);
+        }
+
+        #contact p {
+            font-size: 18px;
+            color: #ddd;
+        }
+
+        #contact a {
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        #contact .whatsapp-link {
+            color: #32CD32;
+            font-weight: bold;
+        }
+
+        #contact .email-link {
+            color: #FFD700;
+            font-weight: bold;
+        }
+
+        #contact a:hover {
+            color: #fff;
+        }
+
+        @media (max-width: 768px) {
+            .portfolio-gallery {
+                grid-template-columns: repeat(2, 1fr); /* 2 images per row on smaller screens */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .portfolio-gallery {
+                grid-template-columns: 1fr; /* 1 image per row on very small screens */
+            }
+            header, #contact {
+                padding: 15px;
+            }
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Intro Section -->
+    <section id="intro">
+        <img src="favicon.png" alt="Profile Photo">
+        <h1>Mr.Dima Retouching</h1>
+    </section>
+
+    <!-- Header with Blurred Background Image -->
+    <header>
+        <img src="favicon.png" alt="Profile Photo" class="profile-photo">
+        <div>
+            <h2>Mr.Dima Portfolio</h2>
+            <p>Take a look at some of my recent work:</p>
+        </div>
+    </header>
+
+    <!-- Portfolio Gallery -->
+    <section class="portfolio-gallery">
+        <div class="portfolio-image">
+            <img src="testimage1.png" alt="Retouched Image 1">
+            <div class="rating" id="rating1">
+                <span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span>
+            </div>
+        </div>
+        <div class="portfolio-image">
+            <img src="testimage2.png" alt="Retouched Image 2">
+            <div class="rating" id="rating2">
+                <span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span>
+            </div>
+        </div>
+        <div class="portfolio-image">
+            <img src="testimage3.png" alt="Retouched Image 3">
+            <div class="rating" id="rating3">
+                <span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span>
+            </div>
+        </div>
+        <div class="portfolio-image">
+            <img src="testimage4.png" alt="Retouched Image 4">
+            <div class="rating" id="rating4">
+                <span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span>
+            </div>
+        </div>
+        <div class="portfolio-image">
+            <img src="testimage5.png" alt="Retouched Image 5">
+            <div class="rating" id="rating5">
+                <span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span>
+            </div>
+        </div>
+        <div class="portfolio-image">
+            <img src="testimage6.png" alt="Retouched Image 6">
+            <div class="rating" id="rating6">
+                <span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span>
+            </div>
+        </div>
+        
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2>Contact Me</h2>
+        <p>I'd love to hear from you! Reach out to discuss projects or collaborations.</p>
+        <p><strong>WhatsApp:</strong> <a href="https://wa.me/94782481192" target="_blank" class="whatsapp-link">WhatsApp</a></p>
+        <p><strong>Email:</strong> <a href="mailto:mrdimaretouching@gmail.com" class="email-link">mrdimaretouching@gmail.com</a></p>
+    </section>
+
+    <script>
+        window.onload = function() {
+            setTimeout(function() {
+                document.body.style.overflow = 'auto';
+                document.getElementById('intro').style.display = 'none';
+            }, 2000);
+        };
+
+        // Rating logic
+        document.querySelectorAll('.rating').forEach(rating => {
+            rating.addEventListener('click', function(event) {
+                if (event.target.tagName === 'SPAN') {
+                    const stars = [...this.querySelectorAll('span')];
+                    const selected = stars.indexOf(event.target) + 1;
+                    stars.forEach((star, index) => {
+                        star.style.color = index < selected ? '#FFD700' : '#999';
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
